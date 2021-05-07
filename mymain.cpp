@@ -3,6 +3,7 @@
 #include "test2.h"
 
 
+#include <iostream>
 
 int main()
 {
@@ -11,5 +12,8 @@ int main()
     func2();
     func3(10);
 
+    std::cout<<"xxxagax"<<std::endl;
+
+    system("pause");
     return 0;
 }

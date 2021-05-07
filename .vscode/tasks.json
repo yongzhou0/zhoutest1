@@ -6,21 +6,26 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "msbuild ALL_BUILD.vcxproj -p:Configuration=Release",
+            "command": "g++",
             "args": [
                 // Ask msbuild to generate full paths for file names.
-                "/property:GenerateFullPaths=true",
-                "/t:build",
-                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                "/consoleloggerparameters:NoSummary"
+                "'-Wall'",
+                "'-std=c++11'",//使用c++11标准
+                "${workspaceFolder}\\*.cpp",//当前文件夹下的所有.cpp
+                //"'${file}'",//当前文件名
+                "-o",//对象名，不进行编译优化
+                "'${fileBasenameNoExtension}.exe'"//当前文件名（去掉扩展名）
             ],
-            "group": "build",
+            "group": {
+                "kind":"build",
+                "isDefault": true
+            },//设置为默认开启编译，无需再选择
             "presentation": {
                 // Reveal the output only if unrecognized errors occur.
                 "reveal": "silent"
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$gcc"
         }
     ]
 }
